@@ -17,3 +17,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           cronitor_key: ${{ secrets.CRONITOR_API_KEY }}
           cronitor_group: actions
+
