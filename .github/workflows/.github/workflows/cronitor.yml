@@ -1,0 +1,19 @@
+name: Cronitor Monitoring Relay
+
+on:
+  workflow_run:
+    workflows: ['*']
+    types: [requested, completed]
+
+jobs:
+  send-telemetry:
+    runs-on: ubuntu-latest
+    name: Send Telemetry
+    steps:
+      - name: Send execution details to Cronitor
+        uses: cronitorio/monitor-github-actions@v8
+        with:
+          event: ${{ toJSON(github.event) }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          cronitor_key: ${{ secrets.CRONITOR_API_KEY }}
+          cronitor_group: actions
